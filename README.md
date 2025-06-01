@@ -14,6 +14,12 @@ The My Resume project is a personal resume website designed to effectively showc
 
 ****Service Worker:** Intercepts and blocks requests to Cloudflare analytics domains to prevent related errors.**
 
+## Deployment
+
+To access this project click this link
+https://ft-mammoo.github.io/CSS-color-marker/
+
+
 ## Tech Stack
 
 **HTML, 
