@@ -17,7 +17,7 @@ The My Resume project is a personal resume website designed to effectively showc
 ## Deployment
 
 To access this project click this link
-https://ft-mammoo.github.io/CSS-color-marker/
+https://ft-mammoo.github.io/My-resume/
 
 
 ## Tech Stack
