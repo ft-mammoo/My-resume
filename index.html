@@ -343,6 +343,17 @@
   <script src="assets/js/main.js"></script>
   <!-- Dark Mode JS File -->
   <script src="assets/js/dark-mode.js"></script>
+  <script>
+    // Block any unwanted third-party scripts
+    window.addEventListener('error', function(e) {
+      if (e.target.src && e.target.src.includes('cloudflareinsights')) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Blocked unwanted script:', e.target.src);
+        return true;
+      }
+    }, true);
+  </script>
 
 </body>
 
