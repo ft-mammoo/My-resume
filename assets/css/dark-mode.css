@@ -1,0 +1,101 @@
+/**
+* Dark Mode Styles
+*/
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* Header */
+body.dark-mode #header {
+  background: #202020;
+  border-right: 1px solid #303030;
+}
+
+body.dark-mode .nav-menu a,
+body.dark-mode .nav-menu a:focus {
+  color: #e0e0e0;
+  background: #303030;
+}
+
+body.dark-mode .nav-menu a span,
+body.dark-mode .nav-menu a:focus span {
+  color: #e0e0e0;
+}
+
+/* Hero section */
+body.dark-mode #hero:before {
+  background: rgba(18, 18, 18, 0.8);
+}
+
+body.dark-mode #hero h1,
+body.dark-mode #hero p {
+  color: #e0e0e0;
+}
+
+/* Sections */
+body.dark-mode .section-title h2 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .contact .info,
+body.dark-mode .contact .php-email-form,
+body.dark-mode #preloader,
+body.dark-mode .services .icon-box {
+  background: #202020;
+}
+
+body.dark-mode .services .icon-box h4 a {
+  color: #e0e0e0;
+}
+
+body.dark-mode .services .icon-box .icon svg path {
+  fill: #303030;
+}
+
+/* Skills */
+body.dark-mode .skills .progress-bar-wrap {
+  background: #303030;
+}
+
+body.dark-mode .about .content h3 {
+  color: #e0e0e0;
+}
+
+/* Footer */
+body.dark-mode #footer {
+  background: #202020;
+  color: #e0e0e0;
+}
+
+/* Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  background: #0563bb;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.theme-toggle:hover {
+  background: #0678e3;
+}
+
+.theme-toggle i {
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 70px;
+  }
+}
