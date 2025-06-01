@@ -5,7 +5,7 @@ const CLOUDFLARE_PATTERNS = [
   'beacon.min.js',
   'cloudflare-static'
 ];
-
+ 
 // Install event - cache necessary files
 self.addEventListener('install', (event) => {
   self.skipWaiting();
