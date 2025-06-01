@@ -344,15 +344,60 @@
   <!-- Dark Mode JS File -->
   <script src="assets/js/dark-mode.js"></script>
   <script>
-    // Block any unwanted third-party scripts
-    window.addEventListener('error', function(e) {
-      if (e.target.src && e.target.src.includes('cloudflareinsights')) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Blocked unwanted script:', e.target.src);
-        return true;
-      }
-    }, true);
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function(error) {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+
+    // Block any unwanted third-party scripts (fallback for browsers that don't support service workers)
+    (function() {
+      // Override fetch to block Cloudflare requests
+      const originalFetch = window.fetch;
+      window.fetch = function(url, options) {
+        if (typeof url === 'string' && url.includes('cloudflareinsights')) {
+          console.log('Blocked Cloudflare fetch request:', url);
+          return Promise.resolve(new Response('', {status: 200}));
+        }
+        return originalFetch.apply(this, arguments);
+      };
+
+      // Block script loading
+      const originalCreateElement = document.createElement;
+      document.createElement = function(tagName) {
+        const element = originalCreateElement.call(document, tagName);
+        if (tagName.toLowerCase() === 'script') {
+          const originalSetter = Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype, 'src').set;
+          Object.defineProperty(element, 'src', {
+            set(url) {
+              if (url && typeof url === 'string' && url.includes('cloudflareinsights')) {
+                console.log('Blocked Cloudflare script:', url);
+                return;
+              }
+              originalSetter.call(this, url);
+            }
+          });
+        }
+        return element;
+      };
+
+      // Block existing script tags
+      window.addEventListener('error', function(e) {
+        if (e.target && e.target.src && typeof e.target.src === 'string' && e.target.src.includes('cloudflareinsights')) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('Blocked error from Cloudflare script:', e.target.src);
+          return true;
+        }
+      }, true);
+    })();
   </script>
 
 </body>
